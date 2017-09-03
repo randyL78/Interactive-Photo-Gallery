@@ -1,3 +1,4 @@
+/* jshint esversion: 6 */
 // JavaScript Document
 
 // //////////////////////////////////////
@@ -5,20 +6,20 @@
 /////////////////////////////////////////
 
 // Declare global variables
-var searchInput = document.getElementById("search");
+const searchInput = document.getElementById("search");
 
-// Functions
-function searchList() {
+// Event handlers
+searchInput.addEventListener("keyup", () => {
    "use strict";
-   var searchFilter = searchInput.value.toLowerCase();
-   var searchUL = document.getElementById("searchList");
-   var searchItem = searchUL.getElementsByTagName("li");
-   
+   const searchFilter = searchInput.value.toLowerCase();
+   const searchUL = document.getElementById("searchList");
+   const searchItem = searchUL.getElementsByTagName("li");
+	
    // Loop through entire gallery, hide elements that don't match search terms
-   for (var i = 0; i < searchItem.length; i++) {
-      var searchImg = searchItem[i].getElementsByTagName("img")[0];
-      var title = searchImg.getAttribute("title");
-      var alt = searchImg.getAttribute("alt");
+   for (let i = 0; i < searchItem.length; i++) {
+      const searchImg = searchItem[i].getElementsByTagName("img")[0];
+      const title = searchImg.getAttribute("title");
+      const alt = searchImg.getAttribute("alt");
       
       // check if search filter appears in image title or alt attributes
       if (title.toLowerCase().indexOf(searchFilter) > -1 || alt.toLowerCase().indexOf(searchFilter) > -1) {
@@ -26,11 +27,8 @@ function searchList() {
       } else {
          searchItem[i].style.display = "none";
       }
-   }
-}
-
-// Event handlers
-searchInput.addEventListener("keyup", searchList, false);
+   }	
+});
 
 
 
